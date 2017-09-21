@@ -1,0 +1,26 @@
+<template>
+	<style>
+		.anwser {
+			border: 2px solid #888;
+			margin: 1em 0 0 1em;
+			padding: 1em;
+		}
+		.anwser h4 {
+			color: #444;
+		}
+		.anwser hr {
+			background-color: #DDD;
+			border: none;
+			height: 1px;
+		}
+	</style>
+	<section class="anwser">
+		<h4>Anwser</h4>
+		<div id="children"></div>
+	</section>
+</template>
+
+<script>
+	class Anwser extends BaseElement {}
+	customElements.define('x-anwser', Anwser);
+</script>

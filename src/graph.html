@@ -1,0 +1,147 @@
+<script>
+	const createSVGElement = (name) =>
+		document.createElementNS('http://www.w3.org/2000/svg', name);
+
+
+	class Graph extends HTMLElement {
+		constructor() {
+			super();
+			const shadow = this.attachShadow({mode: 'open'});
+
+			if (this.getAttribute('data-function') != null) {
+				window[this.getAttribute('data-function')]();
+			}
+
+			const domain =  this.parseDomain(this.getAttribute('data-domain'));
+			const range =  this.parseDomain(this.getAttribute('data-range'));
+			const domainStep = this.parseStep(this.getAttribute('data-domain-step'));
+			const rangeStep = this.parseStep(this.getAttribute('data-range-step'));
+			const grid = this.getAttribute('data-grid') != null;
+
+			const svg = createSVGElement('svg');
+			svg.setAttribute('height', '100%');
+			svg.setAttribute('viewBox', '0 0 120 120');
+			svg.setAttribute('width', '100%');
+
+			let yAxisX = 10;
+			if (domain[0] < 0) {
+				const absDomainStart = Math.abs(domain[0]);
+				yAxisX = 10 + (100 * absDomainStart / (absDomainStart + domain[1]));
+			}
+			const yAxis = createSVGElement('line');
+			yAxis.setAttribute('x1', yAxisX);
+			yAxis.setAttribute('y1', '0');
+			yAxis.setAttribute('x2', yAxisX);
+			yAxis.setAttribute('y2', '120');
+			yAxis.setAttribute('stroke', '#000');
+			yAxis.setAttribute('stroke-width', '0.2');
+
+			let xAxisY = 110;
+			if (range[0] < 0) {
+				const absRangeStart = Math.abs(range[0]);
+				xAxisY = 110 - (100 * absRangeStart / (absRangeStart + range[1]));
+			}
+			const xAxis = createSVGElement('line');
+			xAxis.setAttribute('x1', '0');
+			xAxis.setAttribute('y1', xAxisY);
+			xAxis.setAttribute('x2', '120');
+			xAxis.setAttribute('y2', xAxisY);
+			xAxis.setAttribute('stroke', '#000');
+			xAxis.setAttribute('stroke-width', '0.2');
+
+			const domainDist = 100/ (domain[1] - domain[0]);
+			for (let i = domain[0]; i <= domain[1]; i += domainStep) {
+				if (i === 0) continue;
+
+				const x = 10 + ((i - domain[0]) * domainDist);
+				const line = createSVGElement('line');
+				line.setAttribute('x1', x);
+				line.setAttribute('y1', xAxisY);
+				line.setAttribute('x2', x);
+				line.setAttribute('y2', xAxisY + 2);
+				line.setAttribute('stroke', '#000');
+				line.setAttribute('stroke-width', '0.2');
+				svg.appendChild(line);
+
+				if (grid) {
+					const gridLine = createSVGElement('line');
+					gridLine.setAttribute('x1', x);
+					gridLine.setAttribute('y1', 0);
+					gridLine.setAttribute('x2', x);
+					gridLine.setAttribute('y2', 120);
+					gridLine.setAttribute('stroke', '#EEE');
+					gridLine.setAttribute('stroke-width', '0.2');
+					svg.appendChild(gridLine);
+				}
+
+				const text = createSVGElement('text');
+				text.setAttribute('x', x);
+				text.setAttribute('y', xAxisY + 5);
+				text.setAttribute('fill', '#000');
+				text.setAttribute('font-size', 3);
+				text.setAttribute('style', 'text-anchor: middle');
+				text.innerHTML = i;
+				svg.appendChild(text);
+			}
+
+			const rangeDist = 100/ (range[1] - range[0]);
+			for (let i = range[0]; i <= range[1]; i += rangeStep) {
+				if (i === 0) continue;
+
+				const y = 110 - ((i - range[0]) * rangeDist);
+				const line = createSVGElement('line');
+				line.setAttribute('x1', yAxisX - 2);
+				line.setAttribute('y1', y);
+				line.setAttribute('x2', yAxisX);
+				line.setAttribute('y2', y);
+				line.setAttribute('stroke', '#000');
+				line.setAttribute('stroke-width', '0.2');
+				svg.appendChild(line);
+
+				if (grid) {
+					const gridLine = createSVGElement('line');
+					gridLine.setAttribute('x1', 0);
+					gridLine.setAttribute('y1', y);
+					gridLine.setAttribute('x2', 120);
+					gridLine.setAttribute('y2', y);
+					gridLine.setAttribute('stroke', '#EEE');
+					gridLine.setAttribute('stroke-width', '0.2');
+					svg.appendChild(gridLine);
+				}
+
+				const text = createSVGElement('text');
+				text.setAttribute('x', yAxisX - 5);
+				text.setAttribute('y', y);
+				text.setAttribute('fill', '#000');
+				text.setAttribute('font-size', 3);
+				text.setAttribute('style', 'text-anchor: middle');
+				text.innerHTML = i;
+				svg.appendChild(text);
+			}
+
+			svg.appendChild(xAxis);
+			svg.appendChild(yAxis);
+
+			shadow.appendChild(svg);
+		}
+
+		parseDomain(domain) {
+			const defaultDomain = [0, 10];
+			if (domain == null) return defaultDomain;
+			if (domain.indexOf(',') === -1) return defaultDomain;
+			const parsed = domain
+				.split(',')
+				.map(x => parseInt(x, 10));
+			if (parsed.some(x => x == null || isNaN(x))) return defaultDomain;
+			if (parsed[1] <= parsed[0]) return defaultDomain;
+			return parsed;
+		}
+
+		parseStep(step) {
+			step = parseInt(step, 10);
+			if (step == null || isNaN(step)) return 1;
+			return step;
+		}
+	}
+	customElements.define('x-graph', Graph);
+</script>

@@ -1,0 +1,144 @@
+<!doctype html>
+<head>
+	<title>Math notes - Calculus 1</title>
+	<script src="base-element.js"></script>
+</head>
+
+<body>
+	<link rel="import" href="header.html">
+	<link rel="import" href="question.html">
+	<link rel="import" href="given.html">
+	<link rel="import" href="anwser.html">
+
+	<x-header></x-header>
+
+	<h2>Riemann sum</h2>
+
+	<section>
+		<h3>Right Riemann sum</h3>
+		<div style="display: flex">
+			<div style="flex: 1">
+				$$
+				\begin{align}
+					startOfDomain &= a \\
+					endOfDomain &= b \\
+					numberOfRectangles &= n \\
+					nthRectangle &= i \\[3ex]
+					rectangleWidth &= \frac{endOfDomain - startOfDomain}{numberOfRectangles} \\
+					&= \frac{b - a}{n} \\[3ex]
+					rectangleHeight &= f(startOfDomain + rectangleWidth \cdot nthRectangle) \\
+					&= f(a + \frac{b - a}{n} \cdot i) \\[3ex]
+					rectangleArea &= rectangleHeight \cdot rectangleWidth \\
+					&= f(a + \frac{b - a}{n} \cdot i) \cdot \frac{b-a}{n} \\[3ex]
+					\text{sum of the rectangles} &= \sum_{i=1}^n \text{rectangleArea} \\
+					&= \sum_{i=1}^n f(a + \frac{b - a}{n} \cdot i) \cdot \frac{b-a}{n}
+				\end{align}
+				$$
+			</div>
+			<div style="flex: 1">
+				<svg style="width: 100%; height: 100%" viewBox="0 0 120 120">
+
+
+					<text x="50" y="50" fill="gray" font-size="6">n = 17</text>
+					<rect x="20" y="67" width="5" height="43" fill="#EEE" stroke="#CCC" stroke-width="0.2" />
+					<rect x="25" y="62.5" width="5" height="47.5" fill="#EEE" stroke="#CCC" stroke-width="0.2" />
+					<rect x="30" y="59" width="5" height="51" fill="#EEE" stroke="#CCC" stroke-width="0.2" />
+					<rect x="35" y="57" width="5" height="53" fill="#EEE" stroke="#CCC" stroke-width="0.2" />
+					<rect x="40" y="56.3" width="5" height="53.7" fill="#EEE" stroke="#CCC" stroke-width="0.2" />
+					<rect x="45" y="57" width="5" height="53" fill="#EEE" stroke="#CCC" stroke-width="0.2" />
+					<rect x="50" y="57.5" width="5" height="52.5" fill="#EEE" stroke="#CCC" stroke-width="0.2" />
+					<rect x="55" y="58.8" width="5" height="51.2" fill="#EEE" stroke="#CCC" stroke-width="0.2" />
+					<rect x="60" y="60" width="5" height="50" fill="#EEE" stroke="#CCC" stroke-width="0.2" />
+					<rect x="65" y="60" width="5" height="50" fill="#EEE" stroke="#CCC" stroke-width="0.2" />
+					<rect x="70" y="60" width="5" height="50" fill="#EEE" stroke="#CCC" stroke-width="0.2" />
+					<rect x="75" y="58.5" width="5" height="51.5" fill="#EEE" stroke="#CCC" stroke-width="0.2" />
+					<rect x="80" y="56" width="5" height="54" fill="#EEE" stroke="#CCC" stroke-width="0.2" />
+					<rect x="85" y="52" width="5" height="58" fill="#EEE" stroke="#CCC" stroke-width="0.2" />
+					<rect x="90" y="47.5" width="5" height="62.5" fill="#EEE" stroke="#CCC" stroke-width="0.2" />
+					<rect x="95" y="41" width="5" height="69" fill="#EEE" stroke="#CCC" stroke-width="0.2" />
+					<rect x="100" y="35" width="5" height="75" fill="#EEE" stroke="#CCC" stroke-width="0.2" />
+					<text x="21.2" y="90" fill="gray" font-size="3">
+						i<tspan baseline-shift="sub">1</tspan>
+					</text>
+					<text x="26" y="90" fill="gray" font-size="3">
+						i<tspan baseline-shift="sub">2</tspan>
+					</text>
+					<text x="31" y="90" fill="gray" font-size="3">
+						i<tspan baseline-shift="sub">..</tspan>
+					</text>
+					<text x="96" y="90" fill="gray" font-size="3">
+						i<tspan baseline-shift="sub">..</tspan>
+					</text>
+					<text x="101" y="90" fill="gray" font-size="3">
+						i<tspan baseline-shift="sub">17</tspan>
+					</text>
+
+					<!-- x -->
+					<line x1="10" y1="0" x2="10" y2="120" stroke="black" stroke-width="0.2" />
+
+					<!-- y -->
+					<line x1="0" y1="110" x2="120" y2="110" stroke="black" stroke-width="0.2" />
+
+					<!-- y-axis indicators -->
+					<line x1="8" y1="100" x2="10" y2="100" stroke="black" stroke-width="0.2" />
+					<line x1="8" y1="90" x2="10" y2="90" stroke="black" stroke-width="0.2" />
+					<line x1="8" y1="80" x2="10" y2="80" stroke="black" stroke-width="0.2" />
+					<line x1="8" y1="70" x2="10" y2="70" stroke="black" stroke-width="0.2" />
+					<line x1="8" y1="60" x2="10" y2="60" stroke="black" stroke-width="0.2" />
+					<line x1="8" y1="50" x2="10" y2="50" stroke="black" stroke-width="0.2" />
+					<line x1="8" y1="40" x2="10" y2="40" stroke="black" stroke-width="0.2" />
+					<line x1="8" y1="30" x2="10" y2="30" stroke="black" stroke-width="0.2" />
+					<line x1="8" y1="20" x2="10" y2="20" stroke="black" stroke-width="0.2" />
+					<line x1="8" y1="10" x2="10" y2="10" stroke="black" stroke-width="0.2" />
+
+					<!-- x-axis indicators -->
+					<line x1="20" y1="110" x2="20" y2="112" stroke="black" stroke-width="0.2" />
+					<line x1="30" y1="110" x2="30" y2="112" stroke="black" stroke-width="0.2" />
+					<line x1="40" y1="110" x2="40" y2="112" stroke="black" stroke-width="0.2" />
+					<line x1="50" y1="110" x2="50" y2="112" stroke="black" stroke-width="0.2" />
+					<line x1="60" y1="110" x2="60" y2="112" stroke="black" stroke-width="0.2" />
+					<line x1="70" y1="110" x2="70" y2="112" stroke="black" stroke-width="0.2" />
+					<line x1="80" y1="110" x2="80" y2="112" stroke="black" stroke-width="0.2" />
+					<line x1="90" y1="110" x2="90" y2="112" stroke="black" stroke-width="0.2" />
+					<line x1="100" y1="110" x2="100" y2="112" stroke="black" stroke-width="0.2" />
+					<line x1="110" y1="110" x2="110" y2="112" stroke="black" stroke-width="0.2" />
+
+
+					<text x="20" y="117" fill="red" font-size="6" style="text-anchor: middle;">a</text>
+					<line x1="20" y1="110" x2="20" y2="72" stroke="red" stroke-width="0.4" />
+					<text x="105" y="117" fill="red" font-size="6" style="text-anchor: middle;">b</text>
+					<line x1="105" y1="110" x2="105" y2="34" stroke="red" stroke-width="0.4" />
+					<path
+						d="M 0 100 C 60 0, 60 120, 120 10"
+						fill="transparent"
+						stroke="black"
+						stroke-width="1"
+					/>
+				</svg>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<h3>Left Riemann sum</h3>
+		<div>For the left Riemann sum, the rectangleWidth does not have to be added to the nthRectangle when calculating the rectangleHeight</div>
+		<div>
+			$$
+			\begin{align}
+				rectangleHeight &= f(startOfDomain + nthRectangle) \\
+				&= f(a + i) \\[3ex]
+				\text{sum of the rectangles} &= \sum_{i=1}^n f(a + i) \cdot \frac{b-a}{n}
+			\end{align}
+			$$
+		</div>
+	</section>
+
+	<section>
+		<h3>Relation to integrals</h3>
+		<div>$$\int_{a}^{b} f(x)dx = \lim_{x\to\infty} \sum_{i=1}^n f(x_i) \cdot \frac{b - a}{n}$$</div>
+	</section>
+	<script
+		type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_SVG"
+	></script>
+</body>

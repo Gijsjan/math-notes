@@ -1,0 +1,73 @@
+<!doctype html>
+<head>
+	<title>Math notes - Calculus 1</title>
+	<script src="base-element.js"></script>
+</head>
+
+<body>
+	<link rel="import" href="header.html">
+	<link rel="import" href="question.html">
+	<link rel="import" href="given.html">
+	<link rel="import" href="anwser.html">
+	<link rel="import" href="graph.html">
+
+	<x-header></x-header>
+
+	<!--x-graph
+		style="width: 600px; height: 600px; display: block">
+	</x-graph>
+	<x-graph
+		data-domain="-20,20"
+		data-domain-step="4"
+		data-range="-10, 10"
+		data-range-step="2"
+		data-grid
+		style="width: 600px; height: 600px; display: block">
+	</x-graph-->
+
+	<x-question>What is p(2)?</x-question>
+	<x-given>
+		<div>$$\ddot{p} (t) = 6t$$</div>
+		<div>$$\dot{p} (1) = 4$$</div>
+		<div>$$p(1) = 4$$</div>
+	</x-given>
+	<x-anwser>
+		<div>$$\dot{p} (t) = 3t^2 + C$$</div>
+		<div>$$\dot{p} (1) = 3 + C = 4$$</div>
+		<div>$$C = 1$$</div>
+		<div>$$\dot{p} (t) = 3t^2 + 1$$</div>
+		<hr>
+		<div>$$p(t) = t^3 + t + C$$</div>
+		<div>$$p(1) = 1 + 1 + C = 4$$</div>
+		<div>$$C = 2$$</div>
+		<div>$$p(t) = t^3 + t + 2$$</div>
+		<hr>
+		<div>$$p(2) = 2^3 + 2 + 2$$</div>
+		<div>$$p(2) = 12$$</div>
+	</x-anwser>
+
+	<x-question>What is p(1)?</x-question>
+	<x-given>
+		<div>$$\ddot{p}(t) = sin(t)$$</div>
+		<div>$$\dot{p}(0) = p(0) = 0$$</div>
+	</x-given>
+	<x-anwser>
+		<div>$$\dot{p}(t) = -cos(t) + C$$</div>
+		<div>$$\dot{p}(0) = -1 + C = 0$$</div>
+		<div>$$C = 1$$</div>
+		<div>$$\dot{p}(t) = cos(t) + 1$$</div>
+		<hr>
+		<div>$${p}(t) = -sin(t) + t + C$$</div>
+		<div>$${p}(0) = 0 + 0 + C = 0$$</div>
+		<div>$$C = 0$$</div>
+		<div>$${p}(t) = -sin(t) + t$$</div>
+		<hr>
+		<div>$${p}(1) = -sin(1) + 1$$</div>
+		<div>$${p}(1) = 1 - sin(1)$$</div>
+	</x-anwser>
+
+	<script
+		type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_SVG"
+	></script>
+</body>

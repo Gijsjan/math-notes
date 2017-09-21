@@ -1,0 +1,33 @@
+<!doctype html>
+<title>Math notes - Sigma</title>
+<head>
+	<script src="base-element.js"></script>
+	<link rel="import" href="header.html">
+	<link rel="import" href="question.html">
+	<link rel="import" href="given.html">
+	<link rel="import" href="anwser.html">
+</head>
+<body>
+
+	<x-header></x-header>
+
+	<div>
+		$$
+		\begin{align}
+			\sum_{i=1}^n C &= n \cdot C \\
+			\sum_{i=m}^n C &= (n - m + 1) \cdot C \\
+			\sum_{i=1}^n (C \cdot a_i) &= C \cdot \sum_{i=1}^n a_i \\
+			\sum_{i=1}^n (a_i \pm b_i) &= \sum_{i=1}^n a_i \pm \sum_{i=1}^n b_i \\
+			\sum_{i=1}^n i &= \frac{n(n + 1)}{2} \\
+			\sum_{i=1}^n i^2 &= \frac{n(n + 1)(2n + 1)}{6} \\
+			\sum_{i=1}^n i^3 &= \frac{n^2(n + 1)^2}{4} \\
+			\sum_{i=1}^n i^4 &= \frac{n(n + 1)(2n + 1)(3n^2 + 3n - 1)}{30} \\
+		\end{align}
+		$$
+	</div>
+
+	<script
+		type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_SVG"
+	></script>
+</body>

@@ -1,0 +1,19 @@
+<template>
+	<style>
+		.given {
+			border: 3px solid #CCC;
+			color: #888;
+			margin: 1em 0 0 1em;
+			padding-left: 1em;
+		}
+	</style>
+	<section class="given">
+		<h4>Given</h4>
+		<div id="children"></div>
+	</section>
+</template>
+
+<script>
+	class Given extends BaseElement {}
+	customElements.define('x-given', Given);
+</script>

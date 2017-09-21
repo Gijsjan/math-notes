@@ -1,0 +1,15 @@
+<template>
+	<h1><a href="/">Math notes - Calculus 1</a></h1>
+</template>
+
+<script>
+	class Header extends HTMLElement {
+		connectedCallback() {
+			const importDoc = document.currentScript.ownerDocument;
+			const tpl = importDoc.querySelector('template');
+			const tplClone = tpl.content.cloneNode(true);
+			this.appendChild(tplClone);
+		}
+	}
+	customElements.define('x-header', Header);
+</script>
